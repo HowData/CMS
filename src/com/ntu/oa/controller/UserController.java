@@ -26,7 +26,7 @@ import com.ntu.oa.util.msgUtil.XmlReqClient;
 import common.Logger;
 
 @Controller
-@RequestMapping("/mess")
+@RequestMapping("/util")
 public class UserController extends BaseController {
 	Logger log = Logger.getLogger(UserController.class);
 	private String accountSid;
@@ -89,7 +89,7 @@ public class UserController extends BaseController {
  * @param request
  * @param response
  */
-	@RequestMapping("/verification")
+	@RequestMapping("/message")
 	public void addVehicleModel(HttpServletRequest request, HttpServletResponse response) {
 		JSONObject json = super.initJsonParam(request);
 		ModelResults results = new ModelResults();
@@ -169,7 +169,7 @@ public class UserController extends BaseController {
 		}
 		
 		/**
-		 * 登录接口
+		 * 验证码校验接口
 		 * @param request
 		 * @param response
 		 */
