@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ntu.oa.dao.HuojuDao">
+<insert id="addHuoju" parameterType="map">
+insert into huoju (releaseTime, title, url) values(#{releaseTime,jdbcType=VARCHAR},
+#{title,jdbcType=VARCHAR},
+#{url,jdbcType=VARCHAR})
+</insert>
+
+<update id="upHuoju"  parameterType="map">
+update huoju i set 
+i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
+i.title = #{title,jdbcType=VARCHAR},
+i.url = #{url,jdbcType=VARCHAR}
+</update>
+
+<delete id="delHuoju" parameterType="java.lang.Integer">
+delete from huoju where id = #{id,jdbcType=INTEGER}
+</delete>
+</mapper>

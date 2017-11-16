@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ntu.oa.dao.FinanceDao">
+<insert id="addFinan" parameterType="map">
+insert into finance (imgUrl, url, name, sort) values(#{imgUrl,jdbcType=VARCHAR},
+#{url,jdbcType=VARCHAR},
+#{name,jdbcType=VARCHAR},
+#{sort,jdbcType=INTEGER})
+</insert>
+
+<update id="upFinan"  parameterType="map">
+update finance i set 
+i.imgUrl = #{imgUrl,jdbcType=VARCHAR},
+i.name = #{name,jdbcType=VARCHAR},
+i.url = #{url,jdbcType=VARCHAR},
+i.sort = #{sort,jdbcType=INTEGER}
+</update>
+
+<delete id="delFinan" parameterType="java.lang.Integer">
+delete from finance where id = #{id,jdbcType=INTEGER}
+</delete>
+
+<select id="getFile" parameterType="java.lang.Integer" resultType="java.lang.String">
+select t.imgUrl from finance t where t.id = #{id,jdbcType=INTEGER}
+</select>
+</mapper>

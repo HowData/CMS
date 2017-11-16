@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.ntu.oa.dao.AdminDao">
+	<select id="getAdmin" parameterType="java.lang.String" resultType="java.util.HashMap">
+	select * from admin a where a.account = #{account,jdbcType=VARCHAR}
+	</select>
+</mapper>
