@@ -1,8 +1,6 @@
 package com.ntu.oa.service.impl;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +18,8 @@ import com.ntu.oa.dao.LogisticsDao;
 import com.ntu.oa.service.DynamicService;
 import com.ntu.oa.util.CommonUtil;
 import com.ntu.oa.util.RequestUtil;
-import com.ntu.oa.util.msgUtil.LetterInfo;
-import com.ntu.oa.util.msgUtil.MsgInfo;
-
-import sun.awt.util.IdentityArrayList;
+import com.ntu.oa.util.LetterInfo;
+import com.ntu.oa.util.MsgInfo;
 
 @Service("dynamicService")
 public class DynamicServiceImpl implements DynamicService {

@@ -1,4 +1,4 @@
-package com.ntu.oa.util.msgUtil;
+package com.ntu.oa.util;
 
 public class LetterInfo
 {
@@ -22,6 +22,9 @@ public class LetterInfo
 
     //登陆：该用户不存在
     public static String NO_USER_EXIST = "该用户不存在";
+    
+    //该手机号已经被注册
+    public static String IS_USER = "该手机号已经被注册";
 
     //登陆：该用户已被禁用，请重新输入
     public static String NO_USER_AUTHORITY = "该用户已被禁用，请重新输入";

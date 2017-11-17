@@ -10,8 +10,8 @@ import com.ntu.oa.bean.ModelResults;
 import com.ntu.oa.dao.AdminDao;
 import com.ntu.oa.service.AdminService;
 import com.ntu.oa.util.MD5Util;
-import com.ntu.oa.util.msgUtil.LetterInfo;
-import com.ntu.oa.util.msgUtil.MsgInfo;
+import com.ntu.oa.util.LetterInfo;
+import com.ntu.oa.util.MsgInfo;
 
 
 @Service("loginService")
