@@ -8,5 +8,5 @@ public interface DynamicDao {
 	
 	void upDynanmic(Map<String, Object> info);
 	
-	void delDynamic(int id);
+	void delDynamic(long id);
 }

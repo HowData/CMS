@@ -8,5 +8,5 @@ public interface HuojuDao {
 	
 	void upHuoju(Map<String, Object> info);
 	
-	void delHuoju(int id);
+	void delHuoju(long id);
 }

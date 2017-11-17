@@ -5,19 +5,21 @@
 
 <mapper namespace="com.ntu.oa.dao.HuojuDao">
 <insert id="addHuoju" parameterType="map">
-insert into huoju (releaseTime, title, url) values(#{releaseTime,jdbcType=VARCHAR},
-#{title,jdbcType=VARCHAR},
-#{url,jdbcType=VARCHAR})
+	insert into huoju (releaseTime, title, url) 
+	values(#{releaseTime,jdbcType=VARCHAR},
+	#{title,jdbcType=VARCHAR},
+	#{url,jdbcType=VARCHAR})
 </insert>
 
 <update id="upHuoju"  parameterType="map">
-update huoju i set 
-i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
-i.title = #{title,jdbcType=VARCHAR},
-i.url = #{url,jdbcType=VARCHAR}
+	update huoju i set 
+		i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
+		i.title = #{title,jdbcType=VARCHAR},
+		i.url = #{url,jdbcType=VARCHAR}
+	where i.id = #{id, jdbcType=BIGINT}
 </update>
 
-<delete id="delHuoju" parameterType="java.lang.Integer">
-delete from huoju where id = #{id,jdbcType=INTEGER}
+<delete id="delHuoju" parameterType="java.lang.Long">
+	delete from huoju where id = #{id,jdbcType=BINGINT}
 </delete>
 </mapper>

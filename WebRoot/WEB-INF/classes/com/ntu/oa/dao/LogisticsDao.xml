@@ -5,26 +5,29 @@
 
 <mapper namespace="com.ntu.oa.dao.LogisticsDao">
 <insert id="addLogis" parameterType="map">
-insert into service (imgUrl, url, name, sort) values(#{imgUrl,jdbcType=VARCHAR},
-#{url,jdbcType=VARCHAR},
-#{name,jdbcType=VARCHAR},
-#{sort,jdbcType=INTEGER})
+	insert into service (imgUrl, url, name, sort) 
+	values
+	(#{imgUrl,jdbcType=VARCHAR},
+	#{url,jdbcType=VARCHAR},
+	#{name,jdbcType=VARCHAR},
+	#{sort,jdbcType=INTEGER})
 </insert>
 
 <update id="upLogis"  parameterType="map">
-update service i set 
-i.imgUrl = #{imgUrl,jdbcType=VARCHAR},
-i.name = #{name,jdbcType=VARCHAR},
-i.url = #{url,jdbcType=VARCHAR},
-i.sort = #{sort,jdbcType=INTEGER}
+	update service i set 
+		i.imgUrl = #{imgUrl,jdbcType=VARCHAR},
+		i.name = #{name,jdbcType=VARCHAR},
+		i.url = #{url,jdbcType=VARCHAR},
+		i.sort = #{sort,jdbcType=INTEGER}
+	where i.id = #{id,jdbcType=BINGINT}
 </update>
 
-<delete id="delLogis" parameterType="java.lang.Integer">
-delete from service where id = #{id,jdbcType=INTEGER}
+<delete id="delLogis" parameterType="java.lang.Long">
+	delete from service where id = #{id,jdbcType=BINGINT}
 </delete>
 
-<select id="getFile" parameterType="java.lang.Integer" resultType="java.lang.String">
-select t.imgUrl from service t where t.id = #{id,jdbcType=INTEGER}
+<select id="getFile" parameterType="java.lang.Long" resultType="java.lang.String">
+	select t.imgUrl from service t where t.id = #{id,jdbcType=BINGINT}
 </select>
 
 </mapper>

@@ -81,7 +81,7 @@ public class DynamicServiceImpl implements DynamicService {
 		try {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
-				int id = Integer.parseInt(ids);
+				long id = Long.parseLong(ids);
 				huojuDao.delHuoju(id);
 			}
 			results.setCode(MsgInfo.a_suc_code);
@@ -101,7 +101,7 @@ public class DynamicServiceImpl implements DynamicService {
 		try {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
-				int id = Integer.parseInt(ids);
+				long id = Long.parseLong(ids);
 				dynamicDao.delDynamic(id);
 			}
 			results.setCode(MsgInfo.a_suc_code);
@@ -121,7 +121,7 @@ public class DynamicServiceImpl implements DynamicService {
 		try {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
-				int id = Integer.parseInt(ids);
+				long id = Long.parseLong(ids);
 				String url = financeDao.getFile(id);
 				// String teString =
 				// "http://192.168.88.59:8080/image/head17288104470.jpg";
@@ -152,7 +152,7 @@ public class DynamicServiceImpl implements DynamicService {
 		try {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
-				int id = Integer.parseInt(ids);
+				long id = Long.parseLong(ids);
 				String url = logisticsDao.getFile(id);
 				// String teString =
 				// "http://192.168.88.59:8080/image/head17288104470.jpg";
@@ -181,7 +181,7 @@ public class DynamicServiceImpl implements DynamicService {
 		ModelResults results = new ModelResults();
 		Map<String, Object> info = new HashMap<>();
 		try {
-			info.put("id", json.getString("id"));
+			info.put("id", Long.parseLong(json.getString("id")));
 			info.put("releaseTime", json.getString("releaseTime"));
 			info.put("title", json.getString("title"));
 			info.put("url", json.getString("url"));
@@ -201,7 +201,7 @@ public class DynamicServiceImpl implements DynamicService {
 		ModelResults results = new ModelResults();
 		Map<String, Object> info = new HashMap<>();
 		try {
-			info.put("id", json.getString("id"));
+			info.put("id", Long.parseLong(json.getString("id")));
 			info.put("releaseTime", json.getString("releaseTime"));
 			info.put("title", json.getString("title"));
 			info.put("url", json.getString("url"));

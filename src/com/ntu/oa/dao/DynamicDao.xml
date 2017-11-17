@@ -5,20 +5,22 @@
 
 <mapper namespace="com.ntu.oa.dao.DynamicDao">
 <insert id="addDynam" parameterType="map">
-insert into industry (releaseTime, title, url) values(#{releaseTime,jdbcType=VARCHAR},
-#{title,jdbcType=VARCHAR},
-#{url,jdbcType=VARCHAR})
+	insert into industry (releaseTime, title, url) 
+	values(#{releaseTime,jdbcType=VARCHAR},
+	#{title,jdbcType=VARCHAR},
+	#{url,jdbcType=VARCHAR})
 </insert>
 
 <update id="upDynanmic"  parameterType="map">
-update industry i set 
-i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
-i.title = #{title,jdbcType=VARCHAR},
-i.url = #{url,jdbcType=VARCHAR}
+	update industry i set 
+		i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
+		i.title = #{title,jdbcType=VARCHAR},
+		i.url = #{url,jdbcType=VARCHAR} 
+	where i.id = #{id,jdbcType=BINGINT}
 </update>
 
-<delete id="delDynamic" parameterType="java.lang.Integer">
-delete from industry where id = #{id,jdbcType=INTEGER}
+<delete id="delDynamic" parameterType="java.lang.Long">
+	delete from industry where id = #{id,jdbcType=BIGINT}
 </delete>
 
 </mapper>
