@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONObject;
 import com.ntu.oa.bean.ModelResults;
 import com.ntu.oa.dao.AdminDao;
-import com.ntu.oa.service.LoginService;
+import com.ntu.oa.service.AdminService;
 import com.ntu.oa.util.MD5Util;
 import com.ntu.oa.util.msgUtil.LetterInfo;
 import com.ntu.oa.util.msgUtil.MsgInfo;
 
 
 @Service("loginService")
-public class LoginServiceImpl  implements LoginService {
+public class LoginServiceImpl  implements AdminService {
 
 	@Resource
 	private AdminDao adminDao;

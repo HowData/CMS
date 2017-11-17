@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONObject;
 import com.ntu.oa.bean.ModelResults;
-import com.ntu.oa.service.LoginService;
+import com.ntu.oa.service.AdminService;
 
 @Controller
 @RequestMapping("/admin")
-public class LoginController extends BaseController{
-	Logger log = Logger.getLogger(LoginController.class);
+public class AdminController extends BaseController{
+	Logger log = Logger.getLogger(AdminController.class);
 	@Resource 
-	private LoginService loginService;
+	private AdminService loginService;
 	
 	/**
 	 * 登录接口

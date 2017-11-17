@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.alibaba.fastjson.JSONObject;
 import com.ntu.oa.bean.ModelResults;
 
-public interface LoginService {
+public interface AdminService {
 
 	ModelResults login(JSONObject json, HttpServletRequest request);
 

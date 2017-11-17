@@ -27,8 +27,8 @@ import common.Logger;
 
 @Controller
 @RequestMapping("/util")
-public class UserController extends BaseController {
-	Logger log = Logger.getLogger(UserController.class);
+public class UtilController extends BaseController {
+	Logger log = Logger.getLogger(UtilController.class);
 	private String accountSid;
 	private String authToken;
 

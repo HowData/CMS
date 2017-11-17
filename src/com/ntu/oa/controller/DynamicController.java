@@ -17,7 +17,7 @@ import com.ntu.oa.service.DynamicService;
 @Controller
 @RequestMapping("/dynamic")
 public class DynamicController extends BaseController{
-	Logger log = Logger.getLogger(LoginController.class);
+	Logger log = Logger.getLogger(AdminController.class);
 	@Resource 
 	private DynamicService dynamicService;
 	
