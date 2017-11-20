@@ -8,7 +8,7 @@ public interface FinanceDao {
 	
 	void upFinan(Map<String, Object> info);
 	
-	void delFinan(long id);
+	void delFinan(Map<String, Object> map);
 
 	String getFile(long id);
 }

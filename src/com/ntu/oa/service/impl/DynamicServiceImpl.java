@@ -133,7 +133,10 @@ public class DynamicServiceImpl implements DynamicService {
 				if (file.isFile() && file.exists()) {
 					file.delete();
 				}
-				financeDao.delFinan(id);
+				Map<String, Object> map = new HashMap<>();
+				map.put("id", id);
+				map.put("flag", 0);
+				financeDao.delFinan(map);
 			}
 			results.setCode(MsgInfo.a_suc_code);
 			results.setMessage(LetterInfo.a_suc_codeMsg);
@@ -164,7 +167,10 @@ public class DynamicServiceImpl implements DynamicService {
 				if (file.isFile() && file.exists()) {
 					file.delete();
 				}
-				logisticsDao.delLogis(id);
+				Map<String, Object> map = new HashMap<>();
+				map.put("id", id);
+				map.put("flag", 0);
+				logisticsDao.delLogis(map);
 			}
 			results.setCode(MsgInfo.a_suc_code);
 			results.setMessage(LetterInfo.a_suc_codeMsg);
@@ -242,6 +248,7 @@ public class DynamicServiceImpl implements DynamicService {
 					map.put("url", res.getParameter("url"));
 					map.put("name", res.getParameter("name"));
 					map.put("sort", res.getParameter("sort"));
+					map.put("flag", 1);
 					financeDao.addFinan(map);
 				}
 			}
@@ -277,6 +284,7 @@ public class DynamicServiceImpl implements DynamicService {
 						tempFile.createNewFile();
 					}
 					mf.transferTo(tempFile);
+					
 					financeDao.upFinan(info);
 				}
 			}
@@ -351,6 +359,7 @@ public class DynamicServiceImpl implements DynamicService {
 					map.put("url", res.getParameter("url"));
 					map.put("name", res.getParameter("name"));
 					map.put("sort", res.getParameter("sort"));
+					map.put("flag", 1);
 					logisticsDao.addLogis(map);
 				}
 			}

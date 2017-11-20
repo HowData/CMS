@@ -5,11 +5,12 @@
 
 <mapper namespace="com.ntu.oa.dao.FinanceDao">
 <insert id="addFinan" parameterType="map">
-	insert into finance (imgUrl, url, name, sort) 
+	insert into finance (imgUrl, url, name, sort, flag) 
 	values(#{imgUrl,jdbcType=VARCHAR},
 	#{url,jdbcType=VARCHAR},
 	#{name,jdbcType=VARCHAR},
-	#{sort,jdbcType=INTEGER})
+	#{sort,jdbcType=INTEGER},
+	#{flag,jdbcType=INTEGER})
 </insert>
 
 <update id="upFinan"  parameterType="map">
@@ -17,13 +18,16 @@
 		i.imgUrl = #{imgUrl,jdbcType=VARCHAR},
 		i.name = #{name,jdbcType=VARCHAR},
 		i.url = #{url,jdbcType=VARCHAR},
-		i.sort = #{sort,jdbcType=INTEGER} 
+		i.sort = #{sort,jdbcType=INTEGER,
+		i.flag = #{flag,jdbcType=INTEGER}} 
 	where i.id = #{id,jdbcType=BINGINT}
 </update>
 
-<delete id="delFinan" parameterType="java.lang.Long">
-	delete from finance where id = #{id,jdbcType=BINGINT}
-</delete>
+<update id="delFinan" parameterType="map">
+	update finance i set 
+		i.flag = #{flag,jdbcType=INTEGER}} 
+	where i.id = #{id,jdbcType=BINGINT}
+</update>
 
 <select id="getFile" parameterType="java.lang.Long" resultType="java.lang.String">
 	select t.imgUrl from finance t where t.id = #{id,jdbcType=BINGINT}

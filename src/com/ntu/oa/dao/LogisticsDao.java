@@ -8,7 +8,7 @@ public interface LogisticsDao {
 	
 	void upLogis(Map<String, Object> info);
 	
-	void delLogis(long id);
+	void delLogis(Map<String, Object> map);
 
 	String getFile(long id);
 }

@@ -6,6 +6,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
@@ -323,16 +325,57 @@ public class RequestUtil
         return new Integer(pageNum);
     }
     
+    /**
+     * 判断操作系统
+     * @return
+     */
+    public static boolean isWindowsOS() {
+        boolean isWindowsOS = false;
+        String osName = System.getProperty("os.name");
+        if (osName.toLowerCase().indexOf("windows") > -1) {
+            isWindowsOS = true;
+        }
+        return isWindowsOS;
+    }
+    
     public static String requestURL(HttpServletRequest res)
     {
-    	InetAddress addr;
-    	String ip="";
-		try {
-			addr = InetAddress.getLocalHost();
-			ip=addr.getHostAddress().toString(); //获得本机IP
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-    	return res.getScheme()+"://"+ip+":"+res.getLocalPort()+"/";
+    	if (isWindowsOS()){
+    		InetAddress addr;
+        	String ip="";
+    		try {
+    			addr = InetAddress.getLocalHost();
+    			ip=addr.getHostAddress().toString(); //获得本机IP
+    		} catch (UnknownHostException e) {
+    			e.printStackTrace();
+    		}
+        	return res.getScheme()+"://"+ip+":"+res.getLocalPort()+"/";
+    	}else{
+    		String ip = "";
+    	    try {
+    	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+    	            NetworkInterface intf = en.nextElement();
+    	            String name = intf.getName();
+    	            if (!name.contains("docker") && !name.contains("lo")) {
+    	                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+    	                    InetAddress inetAddress = enumIpAddr.nextElement();
+    	                    if (!inetAddress.isLoopbackAddress()) {
+    	                        String ipaddress = inetAddress.getHostAddress().toString();
+    	                        if (!ipaddress.contains("::") && !ipaddress.contains("0:0:") && !ipaddress.contains("fe80")) {
+    	                            ip = ipaddress;
+    	                            System.out.println(ipaddress);
+    	                        }
+    	                    }
+    	                }
+    	            }
+    	        }
+    	    } catch (SocketException ex) {
+    	        System.out.println("获取ip地址异常");
+    	        ip = "127.0.0.1";
+    	        ex.printStackTrace();
+    	    }
+    	    System.out.println("IP:"+ip);
+    	    return res.getScheme()+"://"+ip+":"+res.getLocalPort()+"/";
+    		}
     }
 }
