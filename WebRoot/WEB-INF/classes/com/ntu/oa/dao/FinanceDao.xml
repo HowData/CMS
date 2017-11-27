@@ -15,21 +15,23 @@
 
 <update id="upFinan"  parameterType="map">
 	update finance i set 
-		i.imgUrl = #{imgUrl,jdbcType=VARCHAR},
 		i.name = #{name,jdbcType=VARCHAR},
 		i.url = #{url,jdbcType=VARCHAR},
-		i.sort = #{sort,jdbcType=INTEGER,
-		i.flag = #{flag,jdbcType=INTEGER}} 
-	where i.id = #{id,jdbcType=BINGINT}
+		i.sort = #{sort,jdbcType=INTEGER}
+	where i.id = #{id,jdbcType=BIGINT}
 </update>
 
 <update id="delFinan" parameterType="map">
 	update finance i set 
-		i.flag = #{flag,jdbcType=INTEGER}} 
-	where i.id = #{id,jdbcType=BINGINT}
+		i.flag = #{flag,jdbcType=INTEGER}
+	where i.id = #{id,jdbcType=BIGINT}
 </update>
 
 <select id="getFile" parameterType="java.lang.Long" resultType="java.lang.String">
-	select t.imgUrl from finance t where t.id = #{id,jdbcType=BINGINT}
+	select t.imgUrl from finance t where t.id = #{id,jdbcType=BIGINT}
+</select>
+
+<select id="getFinance"  parameterType="map" resultType="java.util.HashMap">
+	select * from finance f where f.flag = 1 order by f.sort
 </select>
 </mapper>

@@ -16,11 +16,15 @@
 		i.releaseTime = #{releaseTime,jdbcType=VARCHAR},
 		i.title = #{title,jdbcType=VARCHAR},
 		i.url = #{url,jdbcType=VARCHAR} 
-	where i.id = #{id,jdbcType=BINGINT}
+	where i.id = #{id,jdbcType=BIGINT}
 </update>
 
 <delete id="delDynamic" parameterType="java.lang.Long">
 	delete from industry where id = #{id,jdbcType=BIGINT}
 </delete>
+
+<select id="getIndustry"  parameterType="map" resultType="java.util.HashMap">
+	select * from industry i order by releaseTime desc limit #{start},#{size}
+</select>
 
 </mapper>

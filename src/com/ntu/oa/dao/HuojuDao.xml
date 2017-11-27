@@ -20,6 +20,10 @@
 </update>
 
 <delete id="delHuoju" parameterType="java.lang.Long">
-	delete from huoju where id = #{id,jdbcType=BINGINT}
+	delete from huoju where id = #{id,jdbcType=BIGINT}
 </delete>
+
+<select id="getHuoju"  parameterType="map" resultType="java.util.HashMap">
+	select * from huoju h order by releaseTime desc limit #{start},#{size}
+  </select>
 </mapper>

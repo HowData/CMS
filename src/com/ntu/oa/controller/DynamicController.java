@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -183,4 +184,55 @@ public class DynamicController extends BaseController{
         System.out.println(files);
         results.printJson(results, resp, "");
     }
+	/**
+	 * 获取火炬动态的全部信息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getHouju", method = RequestMethod.POST)
+	public void getHouju(HttpServletRequest request,HttpServletResponse response)
+	{
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = dynamicService.getHouju(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 获取行业动态的全部信息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getIndustry", method = RequestMethod.POST)
+	public void getIndustry(HttpServletRequest request,HttpServletResponse response)
+	{
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = dynamicService.getIndustry(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 获取物流金融的全部信息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getFinance", method = RequestMethod.POST)
+	public void getFinance(HttpServletRequest request,HttpServletResponse response)
+	{
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = dynamicService.getFinance(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 获取物流服务的全部信息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getService", method = RequestMethod.POST)
+	public void getService(HttpServletRequest request,HttpServletResponse response)
+	{
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = dynamicService.getService(json, request);
+		results.printJson(results, response, "");
+	}
 }

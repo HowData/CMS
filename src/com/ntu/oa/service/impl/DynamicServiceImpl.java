@@ -1,6 +1,7 @@
 package com.ntu.oa.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ import com.ntu.oa.util.LetterInfo;
 import com.ntu.oa.util.MsgInfo;
 
 @Service("dynamicService")
-public class DynamicServiceImpl implements DynamicService {
+public class DynamicServiceImpl extends BaseService implements DynamicService {
 	@Value("#{configProperties['FilePath']}")
 	private String FilePath;
 
@@ -126,7 +127,7 @@ public class DynamicServiceImpl implements DynamicService {
 				// String teString =
 				// "http://192.168.88.59:8080/image/head17288104470.jpg";
 				String fileBuffer[] = url.split("/");
-				String fileName = fileBuffer[fileBuffer.length];
+				String fileName = fileBuffer[fileBuffer.length-1];
 				File file = new File(FilePath + fileName);
 				// File file = new File("E:/workspace/shanchuceshi.txt");
 				// 路径为文件且不为空则进行删除
@@ -160,7 +161,7 @@ public class DynamicServiceImpl implements DynamicService {
 				// String teString =
 				// "http://192.168.88.59:8080/image/head17288104470.jpg";
 				String fileBuffer[] = url.split("/");
-				String fileName = fileBuffer[fileBuffer.length];
+				String fileName = fileBuffer[fileBuffer.length-1];
 				File file = new File(FilePath + fileName);
 				// File file = new File("E:/workspace/shanchuceshi.txt");
 				// 路径为文件且不为空则进行删除
@@ -270,21 +271,21 @@ public class DynamicServiceImpl implements DynamicService {
 			info.put("url", res.getParameter("url"));
 			info.put("name", res.getParameter("name"));
 			info.put("sort", res.getParameter("sort"));
+			info.put("id", res.getParameter("id"));
 			if (files == null || files.length == 0) {
 				financeDao.upFinan(info);
 			}
 			for (MultipartFile mf : files) {
 				if (!mf.isEmpty()) {
-					String imgUrl = logisticsDao.getFile(Integer.parseInt(res.getParameter("id")));
+					String imgUrl = financeDao.getFile(Integer.parseInt(res.getParameter("id")));
 					String fileBuffer[] = imgUrl.split("/");
-					String fileName = fileBuffer[fileBuffer.length];
+					String fileName = fileBuffer[fileBuffer.length-1];
 					File tempFile = new File(FilePath + fileName);
 					// 创建文件上传目录
 					if (!tempFile.exists()) {
 						tempFile.createNewFile();
 					}
 					mf.transferTo(tempFile);
-					
 					financeDao.upFinan(info);
 				}
 			}
@@ -306,6 +307,7 @@ public class DynamicServiceImpl implements DynamicService {
 			info.put("url", res.getParameter("url"));
 			info.put("name", res.getParameter("name"));
 			info.put("sort", res.getParameter("sort"));
+			info.put("id", res.getParameter("id"));
 			if (files == null || files.length == 0) {
 				logisticsDao.upLogis(info);
 			}
@@ -313,7 +315,7 @@ public class DynamicServiceImpl implements DynamicService {
 				if (!mf.isEmpty()) {
 					String imgUrl = logisticsDao.getFile(Integer.parseInt(res.getParameter("id")));
 					String fileBuffer[] = imgUrl.split("/");
-					String fileName = fileBuffer[fileBuffer.length];
+					String fileName = fileBuffer[fileBuffer.length-1];
 					File tempFile = new File(FilePath + fileName);
 					// 创建文件上传目录
 					if (!tempFile.exists()) {
@@ -372,4 +374,133 @@ public class DynamicServiceImpl implements DynamicService {
 		}
 		return results;
 	}
+	
+	
+	/**
+	 * 获取火炬动态信息
+	 */
+	@Override
+	public ModelResults getHouju(JSONObject json, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		ModelResults results = new ModelResults();
+		try
+		{	
+			Map<String, Object> map = new HashMap<String, Object>();
+			results = super.getPage(results, json);
+			map.put("start", results.getStart());
+			map.put("size", results.getPageSize());
+			List<Map<Object, Object>> data = huojuDao.getHuoju(map);
+			List<Map<Object, Object>> newData = new ArrayList<>();
+			for(Map<Object, Object> data0 : data){
+				String releaseTime = (String) data0.get("releaseTime");
+				String releaseTime0 = releaseTime.substring(5,10);//截取月份日期
+		        data0.put("releaseTime", releaseTime0);
+		        newData.add(data0);
+			}
+			results.setData(newData);
+			results.setCode(MsgInfo.a_suc_code);
+			results.setMessage(LetterInfo.a_suc_codeMsg);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			results.setCode(MsgInfo.a_error_code);
+			results.setMessage(LetterInfo.a_error_codeMsg);
+		}
+		return results;
+	}
+	
+	/**
+	 * 获取行业动态
+	 */
+	@Override
+	public ModelResults getIndustry(JSONObject json, HttpServletRequest request) {
+		ModelResults results = new ModelResults();
+		try
+		{	
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			results = super.getPage(results, json);
+			map.put("start", results.getStart());
+			map.put("size", results.getPageSize());
+			List<Map<Object, Object>> data = dynamicDao.getIndustry(map);
+			List<Map<Object, Object>> newData = new ArrayList<>();
+			for(Map<Object, Object> data0 : data){
+				String releaseTime = (String) data0.get("releaseTime");
+				String releaseTime0 = releaseTime.substring(5,10);
+		        data0.put("releaseTime", releaseTime0);
+		        newData.add(data0);
+			}
+			results.setData(newData);
+	        results.setCode(MsgInfo.a_suc_code);
+			results.setMessage(LetterInfo.a_suc_codeMsg);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			results.setCode(MsgInfo.a_error_code);
+			results.setMessage(LetterInfo.a_error_codeMsg);
+		}
+		return results;
+	}
+	
+	/**
+	 * 获取物流金融信息
+	 */
+	@Override
+	public ModelResults getFinance(JSONObject json, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		ModelResults results = new ModelResults();
+		try
+		{	
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			results = super.getPage(results, json);
+			map.put("start", results.getStart());
+			map.put("size", results.getPageSize());
+			List<Map<Object, Object>> data = financeDao.getFinance(map);
+			results.setData(data);
+	        results.setCode(MsgInfo.a_suc_code);
+			results.setMessage(LetterInfo.a_suc_codeMsg);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			results.setCode(MsgInfo.a_error_code);
+			results.setMessage(LetterInfo.a_error_codeMsg);
+		}
+		return results;
+	}
+	
+	/**
+	 * 获取物流服务信息
+	 */
+	@Override
+	public ModelResults getService(JSONObject json, HttpServletRequest request) {
+		ModelResults results = new ModelResults();
+		try
+		{	
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			results = super.getPage(results, json);
+			map.put("start", results.getStart());
+			map.put("size", results.getPageSize());
+			List<Map<Object, Object>> data = logisticsDao.getService(map);
+			results.setData(data);
+	        results.setCode(MsgInfo.a_suc_code);
+			results.setMessage(LetterInfo.a_suc_codeMsg);
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			results.setCode(MsgInfo.a_error_code);
+			results.setMessage(LetterInfo.a_error_codeMsg);
+		}
+		return results;
+	}
+
+	
 }

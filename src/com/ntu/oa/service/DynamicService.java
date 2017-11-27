@@ -32,4 +32,12 @@ public interface DynamicService {
 
 	ModelResults addLogis(MultipartFile[] files, HttpServletRequest res);
 
+	ModelResults getHouju(JSONObject json, HttpServletRequest request);
+
+	ModelResults getIndustry(JSONObject json, HttpServletRequest request);
+
+	ModelResults getFinance(JSONObject json, HttpServletRequest request);
+
+	ModelResults getService(JSONObject json, HttpServletRequest request);
+
 }

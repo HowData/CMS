@@ -1,5 +1,6 @@
 package com.ntu.oa.dao;
 
+import java.util.List;
 import java.util.Map;
 
 public interface FinanceDao {
@@ -11,4 +12,6 @@ public interface FinanceDao {
 	void delFinan(Map<String, Object> map);
 
 	String getFile(long id);
+	
+	List<Map<Object, Object>> getFinance(Map<String, Object> map) throws Exception;
 }
