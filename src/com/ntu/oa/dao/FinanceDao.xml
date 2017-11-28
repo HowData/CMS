@@ -32,6 +32,6 @@
 </select>
 
 <select id="getFinance"  parameterType="map" resultType="java.util.HashMap">
-	select * from finance f where f.flag = 1 order by f.sort
+	select * from finance f order by f.sort limit #{start},#{size}
 </select>
 </mapper>

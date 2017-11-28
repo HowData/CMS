@@ -33,6 +33,6 @@
 </select>
 
 <select id="getService"  parameterType="map" resultType="java.util.HashMap">
-	select * from service s where s.flag = 1 order by s.sort
+	select * from service s order by s.sort limit #{start},#{size}
 </select>
 </mapper>
