@@ -123,19 +123,14 @@ public class DynamicServiceImpl extends BaseService implements DynamicService {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
 				long id = Long.parseLong(ids);
-				String url = financeDao.getFile(id);
-				// String teString =
-				// "http://192.168.88.59:8080/image/head17288104470.jpg";
-				String fileBuffer[] = url.split("/");
-				String fileName = fileBuffer[fileBuffer.length-1];
-				File file = new File(FilePath + fileName);
-				// File file = new File("E:/workspace/shanchuceshi.txt");
-				// 路径为文件且不为空则进行删除
-				if (file.isFile() && file.exists()) {
-					file.delete();
-				}
 				Map<String, Object> map = new HashMap<>();
 				map.put("id", id);
+				int flag = financeDao.getFlag(id);
+				if(flag == 1){
+					map.put("flag", 0);
+				}else if(flag == 0){
+					map.put("flag", 1);
+				}
 				map.put("flag", 0);
 				financeDao.delFinan(map);
 			}
@@ -157,20 +152,25 @@ public class DynamicServiceImpl extends BaseService implements DynamicService {
 			List<String> idList = (List<String>) json.get("idList");
 			for(String ids : idList){
 				long id = Long.parseLong(ids);
-				String url = logisticsDao.getFile(id);
-				// String teString =
-				// "http://192.168.88.59:8080/image/head17288104470.jpg";
-				String fileBuffer[] = url.split("/");
-				String fileName = fileBuffer[fileBuffer.length-1];
-				File file = new File(FilePath + fileName);
-				// File file = new File("E:/workspace/shanchuceshi.txt");
-				// 路径为文件且不为空则进行删除
-				if (file.isFile() && file.exists()) {
-					file.delete();
-				}
+//				String url = logisticsDao.getFile(id);
+//				// String teString =
+//				// "http://192.168.88.59:8080/image/head17288104470.jpg";
+//				String fileBuffer[] = url.split("/");
+//				String fileName = fileBuffer[fileBuffer.length-1];
+//				File file = new File(FilePath + fileName);
+//				// File file = new File("E:/workspace/shanchuceshi.txt");
+//				// 路径为文件且不为空则进行删除
+//				if (file.isFile() && file.exists()) {
+//					file.delete();
+//				}
 				Map<String, Object> map = new HashMap<>();
 				map.put("id", id);
-				map.put("flag", 0);
+				int flag = logisticsDao.getFlag(id);
+				if(flag == 1){
+					map.put("flag", 0);
+				}else if(flag == 0){
+					map.put("flag", 1);
+				}
 				logisticsDao.delLogis(map);
 			}
 			results.setCode(MsgInfo.a_suc_code);

@@ -13,5 +13,8 @@ public interface FinanceDao {
 
 	String getFile(long id);
 	
+	int getFlag(long id);
+
 	List<Map<Object, Object>> getFinance(Map<String, Object> map) throws Exception;
+
 }

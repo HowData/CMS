@@ -31,6 +31,10 @@
 	select t.imgUrl from finance t where t.id = #{id,jdbcType=BIGINT}
 </select>
 
+<select id="getFlag" parameterType="java.lang.Long" resultType="java.lang.Integer">
+	select t.flag from service t where t.id = #{id,jdbcType=BIGINT}
+</select>
+
 <select id="getFinance"  parameterType="map" resultType="java.util.HashMap">
 	select * from finance f order by f.sort limit #{start},#{size}
 </select>

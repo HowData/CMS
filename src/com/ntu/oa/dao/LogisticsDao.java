@@ -13,5 +13,7 @@ public interface LogisticsDao {
 
 	String getFile(long id);
 	
+	int getFlag(long id);
+	
 	List<Map<Object, Object>> getService(Map<String, Object> map) throws Exception;
 }
