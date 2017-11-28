@@ -1,10 +1,58 @@
-.hd-modal-con{
+.hd-modal-con {
 	box-shadow: 0 0 3em white;
 }
-.hd-modal-text{
-	
-}
-.hd-modal-hd{
+
+.hd-modal-hd {
 	background-color: #4c4e4e;
-    font-size: 1em;
+	font-size: 1em;
+	color: white;
+}
+
+.hd-modal-t-panel {
+	color: #333;
+	margin: 1em 0.5em;
+}
+
+.hd-modal-footer-panel {
+	margin-bottom: 0.5em;
+}
+
+.hd-m-t-p-t {
+	margin-right: 0.7em;
+}
+
+.hd-m-i-t {
+	padding: 0.2em 0.5em !important;
+	outline: none;
+	width: 27em !important;
+	display: inline-block !important;
+	font-size: 1em !important;
+	background-color: white !important;
+	cursor: pointer !important;
+	border: 0.06em solid #4c4e4e;
+	height: 2.4em;
+}
+
+.hd-cancel {
+	margin-right: 2em !important;
+}
+
+.hd-m-i-time {
+	background-color: white !important;
+	color: #333 !important;
+	padding: 0.2em 0.5em !important;
+}
+
+.datapickerCon {
+	width: 27em;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.txtWarning {
+	border: 0.06em solid #f51a07 !important;
+}
+
+.tpl-table-black-operation-del {
+	cursor: pointer;
 }
