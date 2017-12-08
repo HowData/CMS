@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntu.oa.dao.CombasicMapper">
+	
+	<select id="getComLike" parameterType="map" resultType="map">
+		select c.name, c.id, c.regCapital, c.base, c.estiblishTime, c.legalPersonName, c.type, c.companyId, c.phoneNumber, c.regLocation from combasic c where c.name like
+		concat('%',#{param},'%') limit #{start},#{size}
+	</select>
+	
+	<select id="getComLikeCount" parameterType="map" resultType="java.lang.Integer">
+	    select count(*) from combasic c where c.name like
+		concat('%',#{param},'%') 
+	</select>
+	
+	<select id="getPersonLike" parameterType="map" resultType="map">
+		SELECT DISTINCT
+			a.*
+		FROM
+			combasic a
+		LEFT JOIN leadmember l ON l.localId = a.companyId 
+		LEFT JOIN businessinfo b ON b.localId = a.companyId 
+		WHERE
+			a.legalPersonName LIKE concat('%',#{param},'%') 
+		OR l.`name` LIKE concat('%',#{param},'%') 
+		OR b.`linkPerson` LIKE concat('%',#{param},'%') 
+	</select>
+	
+	<select id="getPersonLikeCount" parameterType="map" resultType="java.lang.Integer">
+	    SELECT 
+			COUNT(DISTINCT companyId) AS total 
+		FROM
+			combasic a 
+		LEFT JOIN leadmember l ON l.localId = a.companyId 
+		LEFT JOIN businessinfo b ON b.localId = a.companyId 
+		WHERE
+			a.legalPersonName LIKE concat('%',#{param},'%') 
+		OR l.`name` LIKE concat('%',#{param},'%') 
+		OR b.`linkPerson` LIKE concat('%',#{param},'%') 
+	</select>
+	
+</mapper>

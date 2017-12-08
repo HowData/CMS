@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntu.oa.dao.AreaMapper">
+
+  <select id="getProvince" parameterType="map" resultType="map">  
+    select * from areacode a where a.level=2 and a.name like concat('%',#{word},'%')
+  </select>
+  
+  <select id="getCity" parameterType="map" resultType="map">  
+    SELECT
+		*
+	FROM
+		areacode a
+	WHERE
+		a.level = 3
+	AND a.code LIKE concat(#{pid},'%')
+	AND a.name LIKE concat('%',#{word},'%')
+  </select>
+  
+  <select id="getDistrict" parameterType="map" resultType="map">  
+    SELECT
+		*
+	FROM
+		areacode a
+	WHERE
+		a.level = 4
+	AND a.code LIKE concat(#{cid},'%')
+	AND a.name LIKE concat('%',#{word},'%')
+  </select>
+  
+</mapper>

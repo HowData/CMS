@@ -25,7 +25,7 @@ public class TianLogController extends BaseController{
 	 * @param response
 	 */
 	@RequestMapping("/getBalance")
-	public void addHuoju(HttpServletRequest request,HttpServletResponse response)
+	public void getBalance(HttpServletRequest request,HttpServletResponse response)
 	{
 		log.info("getBalance start.....");
 		JSONObject json = super.initJsonParam(request);
@@ -38,7 +38,7 @@ public class TianLogController extends BaseController{
 	 * @param response
 	 */
 	@RequestMapping("/getDetil")
-	public void addDyc(HttpServletRequest request,HttpServletResponse response)
+	public void getDetil(HttpServletRequest request,HttpServletResponse response)
 	{
 		log.info("getDetil start.....");
 		JSONObject json = super.initJsonParam(request);

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ntu.oa.dao.BusinessinfoMapper">
+  <select id="getBusinessInfo" parameterType="map" resultType="map">  
+    select * from businessinfo b where b.localId=#{localId}  
+  </select> 
+
+	<insert id="insertInfo" parameterType="map" >
+	   insert into businessinfo (linkPerson,
+	   linkTel, linkAddress, sendProperty, sendType,
+	   name, localId, upTime) values
+	   (#{linkPerson},#{linkTel},#{linkAddress},
+	   #{sendProperty},#{sendType},#{name},#{localId},#{upTime})
+	</insert>
+	
+	<update id="updateInfo" parameterType="map">
+	    update businessinfo b set 
+	    	b.linkPerson = #{linkPerson},
+	    	b.linkTel = #{linkTel},
+	    	b.linkAddress = #{linkAddress},
+	    	b.sendProperty = #{sendProperty},
+	    	b.sendType = #{sendType},
+	    	b.desc = #{desc},
+	    	b.upTime = #{upTime}
+		where b.localId = #{localId}
+	</update>
+</mapper>

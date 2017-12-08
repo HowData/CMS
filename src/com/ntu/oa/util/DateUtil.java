@@ -54,6 +54,15 @@ public class DateUtil
     {
         return date2Str(date, DEFAULT_DATE_PATTERN, timeZone);
     }
+    
+    /** 获取日期字符串
+     * 
+     * @param date 日期
+     * @return yyyy-MM-dd hh24:mm, 中国时间({@link Locale}.PRC) */
+    public static String date3Str(Date date)
+    {
+        return date2Str(date, DEFAULT_MIN_PATTERN);
+    }
 
     /** 获取日期字符串
      * 
