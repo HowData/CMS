@@ -14,7 +14,7 @@ import com.ntu.oa.bean.ModelResults;
 import com.ntu.oa.service.BusinessService;
 
 @Controller
-@RequestMapping("/bussiness")
+@RequestMapping("/business")
 public class BusinessContorller extends BaseController{
 
 	Logger log = Logger.getLogger(BusinessContorller.class);
