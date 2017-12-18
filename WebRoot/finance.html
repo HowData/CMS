@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/amazeui.min.css" />
     <link rel="stylesheet" href="css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/howdata.css">
     <script src="js/jquery.min.js"></script>
 	<script src="js/finance.js"></script>
 </head>
@@ -134,7 +135,7 @@
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
+                                                <button type="button" class="am-btn am-btn-default am-btn-success" id="hd-modal-add"><span class="am-icon-plus"></span> 新增</button>
                                                 <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存</button>
                                                 <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive"></span> 审核</button>
                                                 <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
@@ -165,10 +166,10 @@
                                 </div>
 
                                 <div class="am-u-sm-12">
-                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                         <thead>
                                             <tr>
-                                                <th>文章缩略图</th>
+                                                <th>图片</th>
                                                 <th>文章标题</th>
                                                 <th>作者</th>
                                                 <th>时间</th>
@@ -176,14 +177,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <tr class="gradeX">
+                                                                                        <!-- <tr class="gradeX">
+                                                <td>Amaze UI 模式窗口</td>
+                                                <td>张鹏飞</td>
+                                                <td>2016-09-26</td>
                                                 <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">Amaze UI 模式窗口</td>
-                                                <td class="am-text-middle">张鹏飞</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
                                                     <div class="tpl-table-black-operation">
                                                         <a href="javascript:;">
                                                             <i class="am-icon-pencil"></i> 编辑
@@ -194,97 +192,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">有适配微信小程序的计划吗</td>
-                                                <td class="am-text-middle">天纵之人</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="gradeX">
-                                                <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">请问有没有amazeui 分享插件</td>
-                                                <td class="am-text-middle">王宽师</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">关于input输入框的问题</td>
-                                                <td class="am-text-middle">着迷</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">有没有发现官网上的下载包不好用</td>
-                                                <td class="am-text-middle">醉里挑灯看键</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="even gradeC">
-                                                <td>
-                                                    <img src="img/k.jpg" class="tpl-table-line-img" alt="">
-                                                </td>
-                                                <td class="am-text-middle">我建议WEB版本文件引入问题</td>
-                                                <td class="am-text-middle">罢了</td>
-                                                <td class="am-text-middle">2016-09-26</td>
-                                                <td class="am-text-middle">
-                                                    <div class="tpl-table-black-operation">
-                                                        <a href="javascript:;">
-                                                            <i class="am-icon-pencil"></i> 编辑
-                                                        </a>
-                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                            <i class="am-icon-trash"></i> 删除
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr> -->
+                                            -->
                                             <!-- more data -->
                                         </tbody>
                                     </table>
@@ -311,6 +219,56 @@
         </div>
     </div>
     </div>
+    <!-- modal区域 新增信息-->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="my-modal">
+  <div class="am-modal-dialog hd-modal-con">
+    <div class="am-modal-hd hd-modal-hd">新增数据
+      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+    </div>
+    <div class="am-modal-bd hd-modal-text">
+    	<div class="hd-modal-t-panel">
+    		<label class="hd-m-t-p-t" for="hd-m-i-name">标题</label>
+    		<input class="hd-m-i-t" type="text" id="hd-m-i-name"/>
+    	</div>
+    	<div class="hd-modal-t-panel">
+    		<label class="hd-m-t-p-t" for="hd-m-i-url">URL</label>
+    		<input  class="hd-m-i-t" type="text" id="hd-m-i-url"/>
+    	</div>
+    	<div class="hd-modal-t-panel">
+    		<label class="hd-m-t-p-t" for="hd-m-i-auth">作者</label>
+    		<input  class="hd-m-i-t" type="text" id="hd-m-i-auth" value="admin" readonly="readonly"/>
+    	</div>
+    	<div class="hd-modal-t-panel">
+    		<label class="hd-m-t-p-t" for="datapickerCon">时间</label>
+	    	<div class="datapickerCon" id="datapickerCon">
+	    		<div class="am-input-group am-datepicker-date" id="timerCon" data-am-datepicker="{format: 'yyyy-mm-dd'}">
+				  <input type="text" class="am-form-field hd-m-i-time"  id="hd-m-i-time" placeholder="选择日期" readonly>
+				  <span class="am-input-group-btn am-datepicker-add-on">
+				    <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
+				  </span>
+				</div>
+			</div>	
+    	</div>
+    	<div class="hd-modal-footer-panel">
+    		<button type="button" class="am-btn am-btn-default am-btn-danger hd-cancel" id="hd-cancel"><span class="am-icon-trash-o"></span> 取消</button>
+    		<button type="button" class="am-btn am-btn-default am-btn-secondary hd-confirm" id="hd-confirm" ><span class="am-icon-save"></span> 保存</button>
+    	</div>
+    </div>
+  </div>
+</div>
+<!-- 删除确认 -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">删除信息</div>
+    <div class="am-modal-bd">
+      你，确定要删除这条记录吗？
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
     <script src="js/amazeui.min.js"></script>
     <script src="js/app.js"></script>
 
