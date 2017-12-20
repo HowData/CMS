@@ -20,4 +20,6 @@ public interface BusinessService {
 	ModelResults addMainroute(JSONObject json, HttpServletRequest request);
 	//删除主营路线
 	ModelResults deleteMainroute(JSONObject json, HttpServletRequest request);
+	//发布消息
+	ModelResults publishMsg(JSONObject json, HttpServletRequest request);
 }

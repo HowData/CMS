@@ -22,6 +22,7 @@ public class BusinessContorller extends BaseController{
 	@Resource
 	private BusinessService businessService;
 	
+	
 	/**
 	 * 主页搜索接口(公司名)
 	 * @param request
@@ -117,6 +118,20 @@ public class BusinessContorller extends BaseController{
 		log.info("addMainroute start.....");
 		JSONObject json = super.initJsonParam(request);
 		ModelResults results = businessService.deleteMainroute(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 发布消息
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/publishMsg", method = RequestMethod.POST)
+	public void publishMsg(HttpServletRequest request,HttpServletResponse response)
+	{
+		log.info("publishMsg start.....");
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = businessService.publishMsg(json, request);
 		results.printJson(results, response, "");
 	}
 }

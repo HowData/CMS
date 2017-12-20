@@ -15,6 +15,8 @@ import com.ntu.oa.bean.ModelResults;
 import com.ntu.oa.dao.BusinessinfoMapper;
 import com.ntu.oa.dao.CombasicMapper;
 import com.ntu.oa.dao.MainrouteMapper;
+import com.ntu.oa.dao.MessageMapper;
+import com.ntu.oa.dao.UserBasicMapper;
 import com.ntu.oa.service.BusinessService;
 import com.ntu.oa.util.DateUtil;
 import com.ntu.oa.util.LetterInfo;
@@ -30,6 +32,11 @@ public class BusinessServiceImpl extends BaseService implements BusinessService 
 	private MainrouteMapper mainrouteMapper;
 	@Resource
 	private BusinessinfoMapper businessinfoMapper;
+	@Resource
+	private MessageMapper messageMapper;
+	@Resource
+	private UserBasicMapper userBasicMapper;
+	
 //	@Autowired
 //	private RedisEspImpl redisEspImpl;
 	
@@ -277,6 +284,41 @@ public class BusinessServiceImpl extends BaseService implements BusinessService 
 			map.put("mid", mid);
 			mainrouteMapper.deleteMainroute(map);
 			
+		    results.setCode(MsgInfo.a_suc_code);
+			results.setMessage(LetterInfo.a_suc_codeMsg);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			results.setCode(MsgInfo.a_error_code);
+			results.setMessage(LetterInfo.a_error_codeMsg);
+		}
+		return results;
+	}
+
+	/**
+	 * 发布消息
+	 */
+	@Override
+	public ModelResults publishMsg(JSONObject json, HttpServletRequest request) {
+		ModelResults results = new ModelResults();
+		try
+		{	
+			Map<String, Object> info = new HashMap<String, Object>();
+			String title = json.getString("title");
+			String text = json.getString("text");
+			info.put("title", title);
+			info.put("text", text);
+			info.put("time", DateUtil.date3Str(new Date()));
+			info.put("flag", 0);//是否已读
+			info.put("delflag", 1);//删除标识
+			
+			//获取所有用户
+			List<Long> ids = userBasicMapper.getUserId();
+			for(long id : ids){
+				info.put("userid", id);
+				messageMapper.insertMsg(info);
+			}
 		    results.setCode(MsgInfo.a_suc_code);
 			results.setMessage(LetterInfo.a_suc_codeMsg);
 		}

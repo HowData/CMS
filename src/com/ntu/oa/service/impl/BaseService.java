@@ -66,6 +66,4 @@ public class BaseService {
 		String newUrl = java.net.URLEncoder.encode(url, "utf-8");
 		return newUrl;
 	}
-
-	
 }
