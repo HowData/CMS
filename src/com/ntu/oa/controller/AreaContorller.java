@@ -42,7 +42,7 @@ public class AreaContorller extends BaseController{
 	 * @param response
 	 */
 	@RequestMapping(value = "/getCity", method = RequestMethod.POST)
-	public void searchPerson(HttpServletRequest request,HttpServletResponse response)
+	public void getCity(HttpServletRequest request,HttpServletResponse response)
 	{
 		log.info("getCity start.....");
 		JSONObject json = super.initJsonParam(request);
@@ -56,11 +56,39 @@ public class AreaContorller extends BaseController{
 	 * @param response
 	 */
 	@RequestMapping(value = "/getDistrict", method = RequestMethod.POST)
-	public void getNews(HttpServletRequest request,HttpServletResponse response)
+	public void getDistrict(HttpServletRequest request,HttpServletResponse response)
 	{
 		log.info("getDistrict start.....");
 		JSONObject json = super.initJsonParam(request);
 		ModelResults results = areaService.getDistrict(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 关键字获取地名
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getArea", method = RequestMethod.POST)
+	public void getArea(HttpServletRequest request,HttpServletResponse response)
+	{
+		log.info("getArea start.....");
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = areaService.getArea(json, request);
+		results.printJson(results, response, "");
+	}
+	
+	/**
+	 * 获取全部地区存储redies
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value = "/getAreaAll", method = RequestMethod.POST)
+	public void getAreaAll(HttpServletRequest request,HttpServletResponse response)
+	{
+		log.info("getAreaAll start.....");
+		JSONObject json = super.initJsonParam(request);
+		ModelResults results = areaService.getAreaAll(json, request);
 		results.printJson(results, response, "");
 	}
 }

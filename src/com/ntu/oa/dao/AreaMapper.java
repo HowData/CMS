@@ -12,5 +12,10 @@ public interface AreaMapper {
 
 	List<Map<Object, Object>> getDistrict(Map<String, Object> map);
 	
+	List<Map<Object, Object>> getAreaLike(String word);
+	
+	Map<Object, Object> getNameById(int parentId);
+	
+	List<Map<Object, Object>> getAreaByLevel(String level);
 	
 }

@@ -14,4 +14,10 @@ public interface AreaService {
 
 	//获取区
 	ModelResults getDistrict(JSONObject json, HttpServletRequest request);
+
+	//关键字获取地名
+	ModelResults getArea(JSONObject json, HttpServletRequest request);
+
+	//获取全部地区
+	ModelResults getAreaAll(JSONObject json, HttpServletRequest request);
 }

@@ -93,8 +93,7 @@ public class BusinessServiceImpl extends BaseService implements BusinessService 
 				results.setMessage("请输入！");
 				return results;
 			} else {
-				String word1 = "\\" + word;
-				map.put("param", word1);
+				map.put("param", word);
 				List<Map<Object, Object>> data = combasicMapper.getPersonLike(map);
 				int total = combasicMapper.getPersonLikeCount(map);
 				long total1 = total;

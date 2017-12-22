@@ -28,4 +28,16 @@
 	AND a.name LIKE concat('%',#{word},'%')
   </select>
   
+  <select id="getAreaLike" parameterType="java.lang.String" resultType="map">  
+    select * from areacode a where a.name LIKE concat('%',#{word},'%')
+  </select>
+  
+  <select id="getNameById" parameterType="java.lang.Integer" resultType="map">  
+    select * from areacode where id = #{id}
+  </select>
+  
+  <select id="getNameByLevel" parameterType="java.lang.String" resultType="map">  
+    select * from areacode where level = #{level}
+  </select>
+  
 </mapper>

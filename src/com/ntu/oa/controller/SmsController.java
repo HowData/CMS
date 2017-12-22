@@ -32,15 +32,16 @@ public class SmsController extends BaseController {
 		try {
 
 			String text = json.getString("text");
-
+			String param = "【火数聚】" + text;
+			
 			int s = 0;
 			int f = 0;
 			ArrayList<String> fmobile = new ArrayList<String>();
 			
 //			String mobile = "18248760607,17551015328";
-			String mobile = "18248760607,123452342";
+			String mobile = "18248760607,123456521";
 
-			String respCode = SmsApi.sendYunpianSms(text, mobile);// 短信发送接口
+			String respCode = SmsApi.sendYunpianSms(param, mobile);// 短信发送接口
 			JSONObject rep = JSONObject.parseObject(respCode);
 			List<Map<String, Object>> data = (List<Map<String, Object>>) rep.get("data");
 			for (Map<String, Object> item : data) {

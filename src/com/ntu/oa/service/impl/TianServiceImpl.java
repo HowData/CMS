@@ -13,6 +13,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.ntu.oa.bean.ModelResults;
 import com.ntu.oa.dao.TianlogMapper;
 import com.ntu.oa.service.TianService;
+import com.ntu.oa.util.ComConstant;
+import com.ntu.oa.util.HttpClientUtil;
 import com.ntu.oa.util.LetterInfo;
 import com.ntu.oa.util.MsgInfo;
 
@@ -28,9 +30,7 @@ public class TianServiceImpl extends BaseService implements TianService {
 	public ModelResults getBalance(JSONObject json, HttpServletRequest request) {
 		ModelResults results = new ModelResults();
 		try {
-			Map<String, Object> param = new HashMap<>();
-			param.put("result", 0);
-			double amounts = tianlogMapper.getamounts(param);
+			JSONObject amounts = HttpClientUtil.sendHttpGet(ComConstant.tianbalanceurl);
 			results.setData(amounts);
 			results.setCode(MsgInfo.a_suc_code);
 			results.setMessage(LetterInfo.a_suc_codeMsg);
